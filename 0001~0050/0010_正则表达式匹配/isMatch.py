@@ -1,5 +1,7 @@
 #https://leetcode-cn.com/problems/regular-expression-matching/description/
 
+#is not finished yet.
+
 class Solution:
     class MetaInfo:
         def __init__(self, str, beMore=False):
