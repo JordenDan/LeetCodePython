@@ -7,22 +7,20 @@ class Solution:
         if len(height) <= 1:
             return 0
         maxAreaVal = 0
-        heightTup = list(enumerate(height)) #sort by idx
-        heightTupSortByHeight = heightTup
-        heightTupSortByHeight.sort(key=lambda val: val[1]) #sort by height
 
-        for idxCur, cur in enumerate(heightTupSortByHeight):
-            if cur[1] == 0:
-                continue
-            minDis = maxAreaVal // cur[1]
-            for idx in range(idxCur + 1, len(heightTupSortByHeight)): #go throgh taller heights.
-                dis = abs(heightTupSortByHeight[idx][0] - cur[0])
-                if dis <= minDis:
-                    continue
-                maxAreaVal = max(maxAreaVal, cur[1] * dis)
+        leftIdx = 0
+        rightIdx = len(height) - 1
+        while leftIdx < rightIdx:
+            if height[leftIdx] < height[rightIdx]:
+                tmpArea = (rightIdx - leftIdx) * height[leftIdx]
+                leftIdx += 1
+            else:
+                tmpArea = (rightIdx - leftIdx) * height[rightIdx]
+                rightIdx -= 1
+            if tmpArea > maxAreaVal:
+                maxAreaVal = tmpArea
+
         return maxAreaVal
-
-
 
 sln = Solution()
 
@@ -255,5 +253,5 @@ height = [28, 342, 418, 485, 719, 670, 878, 752, 662, 994, 654, 504, 929, 660, 4
           387, 71, 247, 880, 845, 737, 606, 689, 940, 372, 749, 97, 540, 779, 115, 363, 179, 42, 86, 120, 374, 287, 400,
           816, 956, 443, 401, 553, 674, 32, 498, 413, 455, 97, 294, 301, 186, 900, 990, 478, 625, 91, 575, 165, 871,
           690, 881, 50, 732, 967, 523, 459, 606, 923, 627, 914, 718, 29, 467, 393, 413, 317, 158, 869, 766, 452]
-print("TestCase3: ", sln.maxArea(height))
+print("TestCase3: ", sln.maxArea(height) == 4913370)
 
