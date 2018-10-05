@@ -1,6 +1,7 @@
 import unittest
 # from longestValidParentheses import Solution
-from longestValidParentheses2 import Solution
+# from longestValidParentheses2 import Solution
+from longestValidParentheses3 import Solution
 
 
 class TestCase(unittest.TestCase):
